@@ -1,0 +1,52 @@
+<h1 style="float: center;margin-left: 400px;"><font color="white"><strong>REAL ESTATE MANAGEMENT</strong></font></h1>
+<hr>
+<div class="container;margin-left: 400px;">
+  <div class="top">
+  </div>
+  <div class="login-box animated fadeInUp" style="width:450px">
+    <div class="box-header">
+      <h2 style="border-style: groove;">Log In</h2>
+      <a href="#/signup" style="border-style: groove;"><b><button>Sign Up</button></b></a>
+
+    </div>
+    <form ng-submit="login(type)">
+      <br>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" ng-model="username">
+    <br/>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" ng-model="password">
+    <br/>
+    <select ng-model="type">
+      <option value="user" selected>USER</option>
+      <option value="employee">EMPLOYEE</option>
+    </select>
+    <br/>
+    <button type="submit">Sign In</button>
+  </form>
+  <br>
+    <br/>
+  </div>
+</div>
+
+
+<script>
+	$(document).ready(function () {
+    	$('#logo').addClass('animated fadeInDown');
+    	$("input:text:visible:first").focus();
+	});
+	$('#username').focus(function() {
+		$('label[for="username"]').addClass('selected');
+	});
+	$('#username').blur(function() {
+		$('label[for="username"]').removeClass('selected');
+	});
+	$('#password').focus(function() {
+		$('label[for="password"]').addClass('selected');
+	});
+	$('#password').blur(function() {
+		$('label[for="password"]').removeClass('selected');
+	});
+</script>
