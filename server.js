@@ -55,6 +55,7 @@ app.get('/getnotifications',homeController.getnotifications);
 app.get('/getproperty',homeController.getproperty);
 app.post('/interested',homeController.interested);
 
+
 router.post('/uploadproperty',upload.any(),function(req,res,next){
 	///res.send(req.files);
   connection.query('INSERT INTO property(propertyid,price,type,location,adress,image) values(?,?,?,?,?,?)',[req.body.propertyid,req.body.price,req.body.type,req.body.location,req.body.adress,'/client/upload/'+req.body.useid+req.files[0].fieldname+req.files[0].originalname],function(err,result){
@@ -63,18 +64,45 @@ router.post('/uploadproperty',upload.any(),function(req,res,next){
       res.send({success: false});
     }
     else {
+      connection.query('INSERT INTO verification(documentid,employeeid) values(?,?)',[req.body.documentid,1],function(req,res){
+        if(err) {
+          console.log(err);
+          res.send({success: false});
+        }
+        else {
+          console.log('inserted documentid '+req.body.documentid + 'for verification');
+        }
+      });
       connection.query('INSERT INTO document values(documentid,type,propertyid,image) values(?,?,?,?)',[req.body.documentid,req.files[1].fieldname,req.body.propertyid,'/client/upload/'+req.body.useid+req.files[1].fieldname+req.files[1].originalname],function(err,result1){
         if(err) {
           console.log(err);
           res.send({success: false});
         }
         else {
+          connection.query('INSERT INTO verification(documentid,employeeid) values(?,?)',[req.body.documentid,2],function(req,res){
+            if(err) {
+              console.log(err);
+              res.send({success: false});
+            }
+            else {
+              console.log('inserted documentid '+req.body.documentid + 'for verification');
+            }
+          });
           connection.query('INSERT INTO document values(documentid,type,propertyid,image) values(?,?,?,?)',[req.body.documentid,req.files[1].fieldname,req.body.propertyid,'/client/upload/'+req.body.useid+req.files[1].fieldname+req.files[1].originalname],function(err,result1){
             if(err) {
               console.log(err);
               res.send({success: false});
             }
             else {
+              connection.query('INSERT INTO verification(documentid,employeeid) values(?,?)',[req.body.documentid,3],function(req,res){
+                if(err) {
+                  console.log(err);
+                  res.send({success: false});
+                }
+                else {
+                  console.log('inserted documentid '+req.body.documentid + 'for verification');
+                }
+              });
               connection.query('INSERT INTO document values(documentid,type,propertyid,image) values(?,?,?,?)',[req.body.documentid,req.files[1].fieldname,req.body.propertyid,'/client/upload/'+req.body.useid+req.files[1].fieldname+req.files[1].originalname],function(err,result1){
                 if(err) {
                   console.log(err);

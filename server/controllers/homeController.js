@@ -28,6 +28,7 @@ module.exports.getnotifications = function(req,res) {
   });
 }
 
+//Updating the wishlist by the user
 module.exports.addwishlist = function(req, res) {
   connection.query('DELETE FROM wishlist WHERE buyerid = ?',[req.body.userid],function(err,result){
     if(err) {
@@ -44,6 +45,32 @@ module.exports.addwishlist = function(req, res) {
           res.send(success:true,"message":"Your Wishlist is updated!");
         }
       });
+    }
+  });
+}
+
+//GET all the relevant properties relevant to the user according to his wishlist
+module.exports.getproperty = function(req,res) {
+  connection.query('SELECT * FROM property where verified = 1 AND price >= (SELECT rlow FROM wishlist WHERE buyerid = ?) AND price<= (SELECT rhigh FROM wishlist WHERE buyerid = ? AND location = (SELECT location FROM wishlist WHERE buyerid = ?))',[req.body.userid,req.body.userid,req.body.userid],function(err,result){
+    if(err) {
+      console.log(err);
+      res.send({success: false});
+    }
+    else {
+        res.send(success:true,data:result);
+    }
+  });
+}
+
+//Record the act of the user if he is interested in some of the property
+module.exports.interested = function(req, res) {
+  connection.query('INSERT INTO interested(userid,propertyid) values(?,?)',[req.body.userid,req.body.propertyid],function(err,result){
+    if(err) {
+      console.log(err);
+      res.send({success: false});
+    }
+    else {
+          res.send(success:true,"message":"Your response is recorded");
     }
   });
 }
