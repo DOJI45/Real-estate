@@ -1,0 +1,5 @@
+create table wishlist (buyerid int,type varchar(20),rlow int,rhigh int,location varchar(20),primary key(buyerid,type),foreign key(buyerid) references user(userid));
+
+create table upload(userid int,propertyid int,primary key(userid,propertyid),foreign key(userid) references users(userid),foreign key(propertyid) references property(propertyid));
+
+create table interested(userid int,propertyid int,primary key(userid,propertyid),foreign key(userid) references users(userid),foreign key(propertyid) references property(propertyid));

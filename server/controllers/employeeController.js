@@ -6,3 +6,16 @@ var connection = mysql.createConnection({
   password : '@Shar1234',
   database : 'realestate'
 });
+
+//
+module.exports.getverify = function(req,res) {
+  connection.query('SELECT * FROM document WHERE documentid in (SELECT verification.documentid WHERE verification.employeeid = ?)',[req.body.employeeid],function(err,result){
+    if(err) {
+      console.log(err);
+      res.send({success: false});
+    }
+    else {
+      res.send([{success: true,data:result}]);
+    }
+  });
+}
