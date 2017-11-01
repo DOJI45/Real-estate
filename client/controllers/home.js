@@ -52,6 +52,24 @@ app.controller("homeController", function($scope, $http, $resource, $route,$wind
       }, function(err){});
     }
 
+    $scope.interested = function(data){
+      data.username = $window.localStorage["user"];
+      alert(data.username);
+      alert(JSON.stringify(data));
+      $http({
+        url: '/interested',
+        method: 'post',
+        data:data
+      }).then(function(data) {
+        if(data.data.success) {
+          alert("Wishlist updated SUCCESSFULLY");
+        }
+        else {
+          alert(data.data.message);
+        }
+      }, function(err){});
+    }
+
         $scope.changepassword = function(changepass) {
             changepass.username = $window.localStorage["user"];
           $http({
@@ -68,5 +86,4 @@ app.controller("homeController", function($scope, $http, $resource, $route,$wind
             }
           }, function(err){});
         }
-
 });
