@@ -16,7 +16,7 @@ app.config(function($routeProvider) {
   })
   .when('/employee', {
     templateUrl: '/views/employee.html',
-    controller: 'employeeController'
+    controller: 'homeController'
   })
   .when('/property', {
     templateUrl: '/views/property.html',

@@ -31,7 +31,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage:storage });
 
 var server=app.listen(3000,function(){
-  console.log("Real estate is online on port no 3000");
+  console.log("Real estate app is online at port no 3000");
 })
 
 app.use(bodyParser.urlencoded({
@@ -47,6 +47,7 @@ app.use('/', express.static(__dirname + '/client/'));
 app.post('/login', loginController.login);
 app.post('/signup', loginController.signup);
 
+app.post('/emplogin',employeeController.emplogin);
 app.post('/verify',employeeController.verify);
 app.get('/getverify',employeeController.getverify);
 
