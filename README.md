@@ -1,11 +1,11 @@
 # Real-estate
 About:
-This project aims to connect the potential buyers and the sellers;
-Seller uploads property with valid documents;
-These documents are verified;
-Only verified documents which are according to wishlist of the buyer are shown to the buyer;
-Buyer may choose the property he is interested in and contact the owner;
-Meanwhile once the buyer clicks on he is interested  in some property that notification is sent to the owner;
+- This project aims to connect the potential buyers and the sellers;
+- Seller uploads property with valid documents;
+- These documents are verified;
+- Only verified documents which are according to wishlist of the buyer are shown to the buyer;
+- Buyer may choose the property he is interested in and contact the owner;
+- Meanwhile once the buyer clicks on he is interested  in some property that notification is sent to the owner;
 
 
 Flow of the project:
@@ -14,10 +14,12 @@ home page - login page
 - ask for login with username password
 - else signup
 
-signup - redirect to a signup page
-populate the data in signup page if the email is confirmed
+signup
+- redirect to a signup page
+- populate the data in signup page if the email is confirmed
 
-signin - signin with correct email and password - passport js//TODO
+signin
+- signin with correct email and password - passport js//TODO
 
 user.html
 - upload properties - populate the property and document tables
@@ -35,6 +37,6 @@ employee.html
 store both the image and document with the absolute path in the database which can be rendered later;
 
 documents which are to be verified:
-khata certificate
-tax receit
-encumberation certificate
+-khata certificate
+-tax receit
+-encumberation certificate
