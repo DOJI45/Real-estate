@@ -1,12 +1,12 @@
 var app = angular.module("realApp");
+//var app = angular.module("realApp", ['ngResource', 'ngRoute']);
 
-
-app.controller("homeController", function($scope, $http, $resource, $route,$window) {
+app.controller("homeController",['$scope','$http','$resource','$route','$window'] function($scope, $http, $resource, $route,$window) {
 
 
     var notifications = $resource('/getnotifications');
     notifications.query(function(result){
-      $scope.notifications = result[0].data;
+     $scope.notifications = result[0].data;
     })
 
     var property = $resource('/getproperty');

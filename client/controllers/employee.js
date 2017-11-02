@@ -1,6 +1,5 @@
 var app = angular.module("realApp");
-
-
+//var app = angular.module("realApp", ['ngResource', 'ngRoute']);
 app.controller("employeeController", function($scope, $http, $resource, $route,$window) {
 
 

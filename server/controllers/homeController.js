@@ -42,7 +42,7 @@ module.exports.addwishlist = function(req, res) {
           res.send({success: false});
         }
         else {
-          res.send(success:true,"message":"Your Wishlist is updated!");
+          res.send({success:true,"message":"Your Wishlist is updated!"});
         }
       });
     }
@@ -57,7 +57,7 @@ module.exports.getproperty = function(req,res) {
       res.send({success: false});
     }
     else {
-        res.send(success:true,data:result);
+        res.send({success:true,data:result});
     }
   });
 }
@@ -70,7 +70,7 @@ module.exports.interested = function(req, res) {
       res.send({success: false});
     }
     else {
-          res.send(success:true,"message":"Your response is recorded");
+          res.send({success:true,"message":"Your response is recorded"});
     }
   });
 }

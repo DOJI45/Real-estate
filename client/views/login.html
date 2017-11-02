@@ -1,6 +1,6 @@
-<h1 style="float: center;margin-left: 400px;"><font color="white"><strong>REAL ESTATE MANAGEMENT</strong></font></h1>
+<h1 style="float: center;margin-left: 400px;"><font color="blue"><strong>REAL ESTATE MANAGEMENT</strong></font></h1>
 <hr>
-<div class="container;margin-left: 400px;">
+<div class="container;margin-left: 400px;" ng-controller = "loginController">
   <div class="top">
   </div>
   <div class="login-box animated fadeInUp" style="width:450px">
@@ -9,7 +9,7 @@
       <a href="#/signup" style="border-style: groove;"><b><button>Sign Up</button></b></a>
 
     </div>
-    <form ng-submit="login()">
+    <form ng-submit="loginn()">
       <br>
 
     <label for="username">Username</label>
@@ -24,6 +24,7 @@
       <option value="employee">EMPLOYEE</option>
     </select>
     <br/>
+    {{username}}
     <button type="submit">Sign In</button>
   </form>
   <br>

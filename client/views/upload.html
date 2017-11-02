@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="top">
+    <h1 id="title" class="hidden"><span id="logo">Daily <span>UI</span></span></h1>
+  </div>
+  <div class="login-box animated fadeInUp" style="width:50%">
+    <div class="box-header">
+      <h2 style="border-style: groove;">UPLOAD PROPERTY DETAILS</h2>
+
+    </div>
+    <form ng-submit="uploadproperty(data)">
+
+      <br>
+
+    <label for="type">TYPE</label>
+    <select ng-model="data.type">
+      <option value="home" selected>HOME</option>
+      <option value="land">LAND</option>
+    </select>
+    <br/>
+
+    <label for="price">PRICE &nbsp;</label>
+    <input type="text" id="username" ng-model="data.price">
+    <br/>
+
+    <label for="location">LOCATION</label>
+    <input type="text" id="password" ng-model="data.location">
+    <br/>
+
+    <label for="adress">ADRESS &nbsp;</label>
+    <input type="text" id="username" ng-model="data.adress">
+    <br/>
+
+    <label for="image">IMAGE</label>
+    <input type="file" id="username" ng-model="data.image">
+    <br/>
+
+    <label for="khata">KHATA CERTIFICATE</label>
+    <input type="file" id="username" ng-model="data.khata">
+    <br/>
+
+    <label for="tax">TAX RECEIT</label>
+    <input type="file" id="username" ng-model="data.tax">
+    <br/>
+
+    <label for="encumberation">ENCUMBERATION CERTIFICATE</label>
+    <input type="file" id="username" ng-model="data.encumberation">
+    <br/>
+
+    <button type="submit">Upload</button>
+  </form>
+    <br/>
+  </div>
+</div>

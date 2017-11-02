@@ -8,8 +8,27 @@ var connection = mysql.createConnection({
 });
 
 
+module.exports.login = function(req, res) {
+  console.log(req.body)
+  console.log('sharah');
+  connection.query('SELECT * FROM users WHERE (username = ?)', [ req.body.username ], function (error, result, fields) {
+    if(error) console.log(error);
+    else if(!result.length) {
+      res.send({success: false, message: "INCORRECT USERNAME"})
+    }
+    else {
+      if(result[0].password == req.body.password){
+        res.send({success: true, message: "correct", type: result[0].type})
+      }
+      else {
+        res.send({success: false, message: "INVALID credentials!"});
+      }
+    }
+  });
+}
+
 module.exports.signup = function(req, res) {
-  connection.query('INSERT INTO users(username,email) value(?,?,?,?,?)', [req.body.username, req.body.email], function(err, result) {
+  connection.query('INSERT INTO users(username,email) values(?,?)', [req.body.username, req.body.email], function(err, result) {
     if(err) {
       console.log(err);
       res.send({"success": false, message: "USERNAME OR PASSWORD ALREADY TAKEN"});
@@ -24,7 +43,7 @@ module.exports.signup = function(req, res) {
           res.send({success: true, message: "SUCCESSFULLY REGISTERED"});
         }
       });
-      })
+
     }
   });
 }

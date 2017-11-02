@@ -1,15 +1,11 @@
+
 var app = angular.module("realApp");
-
 app.controller('loginController', function($scope,$resource, $location, $http,$window) {
-
-  $scope.main = "Login";
+$scope.main = "Login";
   $scope.username = "";
   $scope.password = "";
   $scope.type = "user";
-  //$scope.access = 0;
-  if($scope.type==="user")
-  {
-    $scope.login = function() {
+    $scope.loginn = function() {
       $http({
         url: '/login',
         method: 'post',
@@ -20,32 +16,14 @@ app.controller('loginController', function($scope,$resource, $location, $http,$w
       }).then(function(data) {
         if(data.data.success) {
           $location.path('/home');
+          console.log('loggin in as sharath');
           $window.localStorage["user"] = $scope.username;
+        }
         else {
           alert(data.data.message);
         }
       }, function(err){})
     }
-  }
-  else {
-    $scope.login = function() {
-      $http({
-        url: '/emplogin',
-        method: 'post',
-        data: {
-          "username": $scope.username,
-          "password": $scope.password
-        }
-      }).then(function(data) {
-        if(data.data.success) {
-          $location.path('/employee');
-          $window.localStorage["user"] = $scope.username;
-        else {
-          alert(data.data.message);
-        }
-      }, function(err){})
-    }
-  }
 
   $scope.signup = function(data1) {
     data1.type="user";
@@ -61,4 +39,4 @@ app.controller('loginController', function($scope,$resource, $location, $http,$w
     }, function(err){})
   }
 
-})
+});

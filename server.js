@@ -43,7 +43,6 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use('/', express.static(__dirname + '/client/'));
 
-
 app.post('/login', loginController.login);
 app.post('/signup', loginController.signup);
 
@@ -110,7 +109,7 @@ router.post('/uploadproperty',upload.any(),function(req,res,next){
                   res.send({success: false});
                 }
                 else {
-                    res.send(success:true,"message":"Your Wishlist is updated!");
+                    res.send({success:true});
                 }
               });
             }
