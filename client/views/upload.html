@@ -7,7 +7,7 @@
       <h2 style="border-style: groove;">UPLOAD PROPERTY DETAILS</h2>
 
     </div>
-    <form ng-submit="uploadproperty(data)">
+    <form ng-submit="uploadproperty(data)" enctype="multipart/form-data">
 
       <br>
 
@@ -19,20 +19,20 @@
     <br/>
 
     <label for="price">PRICE &nbsp;</label>
-    <input type="text" id="username" ng-model="data.price">
+    <input type="text" id="username" ng-file-model="data.price">
     <br/>
 
     <label for="location">LOCATION</label>
-    <input type="text" id="password" ng-model="data.location">
+    <input type="text" id="password" ng-file-model="data.location">
     <br/>
-    Sharath Bhat {{data.location}}
     <label for="adress">ADRESS &nbsp;</label>
-    <input type="text" id="username" ng-model="data.adress">
+    <input type="text" id="username" ng-file-model="data.adress">
     <br/>
 
     <label for="image">IMAGE</label>
-    <input type="file" id="username" ng-model="data.image">
+    <input type="file" id="username" ng-model-file="data.image">
     <br/>
+
 
     <label for="khata">KHATA CERTIFICATE</label>
     <input type="file" id="username" ng-model="data.khata">
@@ -45,7 +45,7 @@
     <label for="encumberation">ENCUMBERATION CERTIFICATE</label>
     <input type="file" id="username" ng-model="data.encumberation">
     <br/>
-    <button type="submit">Upload</button>
+        <button type="submit">Upload</button>
   </form>
     <br/>
   </div>
