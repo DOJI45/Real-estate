@@ -10,9 +10,10 @@ app.config(function($routeProvider) {
     templateUrl: '/views/signup.html',
     controller: 'loginController'
   })
-  .when('/home', {
+  .when('/home',{
     templateUrl: '/views/home.html',
     controller: 'homeController'
+
   })
   .when('/employee', {
     templateUrl: '/views/employee.html',
@@ -38,7 +39,6 @@ app.config(function($routeProvider) {
     redirectTo: '/login'
   })
 })
-
 
 app.controller('mainController', function($scope) {
   $scope.main = "Real Estate Management";

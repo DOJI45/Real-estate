@@ -74,3 +74,34 @@ module.exports.interested = function(req, res) {
     }
   });
 }
+
+
+module.exports.uploadproperty = function(req, res) {
+  console.log(req.body);
+  if (!req.files)
+    return res.status(400).send('No files were uploaded.');
+
+
+var image = req.files.image;
+var khata = req.files.khata;
+var tax = req.files.tax;
+var encumberation = req.files.encumberation;
+
+image.mv('client/upload/henryford.jpg', function(err) {
+    if (err)
+      return res.status(500).send(err);
+    else {
+      khata.mv('client/upload/henryford.jpg',function(err){
+        if(err)
+          return res.status(500).send(err);
+          else {
+
+          }
+      })
+    }
+  });
+
+
+
+
+}

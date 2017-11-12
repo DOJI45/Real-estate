@@ -5,8 +5,10 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var loginController = require('./server/controllers/loginController');
 var homeController = require('./server/controllers/homeController');
-var employeeController = require('./server/controllers/employeeController')
+var employeeController = require('./server/controllers/employeeController');
 var multer = require('multer');
+var fs = require('fs');
+const fileUpload = require('express-fileupload');
 
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -15,24 +17,16 @@ var connection = mysql.createConnection({
   database : 'realestate'
 });
 
-
 var app = express();
 
 var router = express.Router();
 
-var storage = multer.diskStorage({
-	destination:function(req,file,cb){
-		cb(null,'client/upload/')
-	},
-	filename: function(req,file,cb){
-		cb(null,req.body.userid+file.fieldname+file.originalname);
-	}
-});
-var upload = multer({ storage:storage }).array('Documents',2);
 
 var server=app.listen(3000,function(){
   console.log("Real estate app is online at port no 3000");
 })
+
+app.use(fileUpload());
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -40,6 +34,9 @@ app.use(bodyParser.urlencoded({
 
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
 app.use(morgan('dev'));
 app.use('/', express.static(__dirname + '/client/'));
 
@@ -55,19 +52,9 @@ app.get('/getnotifications',homeController.getnotifications);
 app.get('/getproperty',homeController.getproperty);
 app.post('/interested',homeController.interested);
 
-router.post('/uploadproperty',function(){
-  upload(req,res,function(err) {
-      //console.log(req.body);
-      //console.log(req.files);
-      if(err) {
-          res.send("Error uploading file.");
-      }
-      res.send("File is uploaded");
-  });
+app.post('/test', homeController.uploadproperty);
 
-});
-
-router.post('/uploadpropertya',function(req,res,next){
+router.post('/uploadproperty',function(req,res,next){
 	///res.send(req.files);
   console.log('Sharath');
   connection.query('INSERT INTO property(propertyid,price,type,location,adress,image) values(?,?,?,?,?,?)',[req.body.propertyid,req.body.price,req.body.type,req.body.location,req.body.adress,'/client/upload/'+req.body.useid+req.files[0].fieldname+req.files[0].originalname],function(err,result){
