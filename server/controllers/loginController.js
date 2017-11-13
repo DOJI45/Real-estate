@@ -9,8 +9,6 @@ var connection = mysql.createConnection({
 
 
 module.exports.login = function(req, res) {
-  console.log(req.body)
-  console.log('sharah');
   connection.query('SELECT * FROM users WHERE (username = ?)', [ req.body.username ], function (error, result, fields) {
     if(error) console.log(error);
     else if(!result.length) {
@@ -43,7 +41,6 @@ module.exports.signup = function(req, res) {
           res.send({success: true, message: "SUCCESSFULLY REGISTERED"});
         }
       });
-
     }
   });
 }

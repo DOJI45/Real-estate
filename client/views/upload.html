@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="top">
     <h1 id="title" class="hidden"><span id="logo">Daily <span>UI</span></span></h1>
@@ -8,8 +9,7 @@
 
     </div>
 
-
-      <form ref='uploadForm' id='uploadForm' action='http://localhost:3000/test' method='post' encType="multipart/form-data">
+      <form ref='uploadForm' id='uploadForm' action='http://localhost:3000/uploadproperty' method='post' encType="multipart/form-data">
 
       <br>
       <label for="type">TYPE</label>
@@ -45,7 +45,7 @@
 
       <label for="encumberation">ENCUMBERATION CERTIFICATE</label>
       <input type="file" name="encumberation">
-      <br/>
+      <input type="hidden" name= "username" value="{{user}}" />
 
       <input type='submit' value='Upload!' />
 

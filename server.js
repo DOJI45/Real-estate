@@ -52,9 +52,9 @@ app.get('/getnotifications',homeController.getnotifications);
 app.get('/getproperty',homeController.getproperty);
 app.post('/interested',homeController.interested);
 
-app.post('/test', homeController.uploadproperty);
+app.post('/uploadproperty', homeController.uploadproperty);
 
-router.post('/uploadproperty',function(req,res,next){
+router.post('/uploadpropertya',function(req,res,next){
 	///res.send(req.files);
   console.log('Sharath');
   connection.query('INSERT INTO property(propertyid,price,type,location,adress,image) values(?,?,?,?,?,?)',[req.body.propertyid,req.body.price,req.body.type,req.body.location,req.body.adress,'/client/upload/'+req.body.useid+req.files[0].fieldname+req.files[0].originalname],function(err,result){

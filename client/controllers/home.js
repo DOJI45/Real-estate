@@ -1,5 +1,4 @@
 var app = angular.module("realApp");
-//var app = angular.module("realApp", ['ngResource', 'ngRoute']);
 
 app.controller("homeController",function($scope, $http, $resource, $route,$window) {
 
@@ -16,29 +15,11 @@ app.controller("homeController",function($scope, $http, $resource, $route,$windo
 var data = {};
 data.location = "Bengaluru";
 
-  $scope.uploadproperty = function(data){
-    data.username = $window.localStorage["user"];
-    //alert(data.username);
-    alert(JSON.stringify(data));
-    $http({
-      url: '/uploadproperty',
-      method: 'post',
-      data:data
-    }).then(function(data) {
-      if(data.data.success) {
-        alert("Property uploaded SUCCESSFULLY");
-      }
-      else {
-
-        alert(JSON.stringify(data.data));
-      }
-    }, function(err){});
-  }
+$scope.user = $window.localStorage["user"];
 
   $scope.addwishlist = function(data){
     data.username = $window.localStorage["user"];
-    alert(data.username);
-    alert(JSON.stringify(data));
+    $scope.cur = $window.localStorage["user"] | null;
     $http({
       url: '/addwishlist',
       method: 'post',
@@ -52,6 +33,23 @@ data.location = "Bengaluru";
       }
     }, function(err){});
   }
+
+  $scope.uploadproperty = function(data){
+    data.username = $window.localStorage["user"];
+    $http({
+      url: '/uploadproperty',
+      method: 'post',
+      data:data
+    }).then(function(data) {
+      if(data.data.success) {
+        alert("Property add SUCCESSFULLY");
+      }
+      else {
+        alert(data.data.message);
+      }
+    }, function(err){});
+  }
+
 
   $scope.interested = function(data){
     data.username = $window.localStorage["user"];

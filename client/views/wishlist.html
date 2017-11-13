@@ -1,1 +1,39 @@
 
+<div class="container">
+  <div class="top">
+    <h1 id="title" class="hidden"><span id="logo">Daily <span>UI</span></span></h1>
+  </div>
+  <div class="login-box animated fadeInUp" style="width:50%">
+    <div class="box-header">
+      <h2 style="border-style: groove;">ADD YOUR WISHLIST</h2>
+
+    </div>
+
+
+    <form ng-submit="addwishlist(data)">
+      <br>
+      <label for="type">TYPE</label>
+      <select ng-model="data.type">
+        <option value="home" selected>HOME</option>
+        <option value="land">LAND</option>
+      </select>
+      <br/>
+
+    <h5>RANGE OF THE PROPERTY IN LAKHS</h5>
+    <label for="rlow">RLOW</label>
+    <input type="number" ng-model="data.rlow">
+    <br/>
+
+    <label for="rhigh">RHIGH</label>
+    <input type="number" ng-model="data.rhigh">
+    <br/>
+
+    <label for="location">LOCATION</label>
+    <input type="text" ng-model="data.location">
+    <br/>
+
+    <button type="submit">Update</button>
+
+  </form>
+  </div>
+</div>

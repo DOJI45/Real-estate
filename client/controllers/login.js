@@ -1,5 +1,6 @@
 
 var app = angular.module("realApp");
+
 app.controller('loginController', function($scope,$resource, $location, $http,$window) {
 $scope.main = "Login";
   $scope.username = "";
@@ -16,7 +17,6 @@ $scope.main = "Login";
       }).then(function(data) {
         if(data.data.success) {
           $location.path('/home');
-          console.log('loggin in as sharath');
           $window.localStorage["user"] = $scope.username;
         }
         else {
@@ -38,5 +38,4 @@ $scope.main = "Login";
       }
     }, function(err){})
   }
-
 });
