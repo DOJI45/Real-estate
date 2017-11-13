@@ -2,12 +2,12 @@ var app = angular.module("realApp");
 
 app.controller("homeController",function($scope, $http, $resource, $route,$window) {
 
-  var notifications = $resource('/getnotifications');
+  var notifications = $resource('/getnotifications?username='+$window.localStorage["user"]);
   notifications.query(function(result){
    $scope.notifications = result[0].data;
   })
 
-  var property = $resource('/getproperty');
+  var property = $resource('/getproperty?username='+$window.localStorage["user"]);
   property.query(function(result){
     $scope.property = result[0].data;
   })

@@ -11,19 +11,30 @@ var connection = mysql.createConnection({
 
 //GET the notifications
 module.exports.getnotifications = function(req,res) {
-  connection.query('SELECT propertyid FROM property WHERE userid = ? AND verified = 1',[req.body.userid],function(err,result){
+  var url_parts = url.parse(req.url, true);
+  req.body.username = url_parts.query.username;
+  connection.query('SELECT userid FROM users WHERE username = ?',[req.body.username],function(err,result){
     if(err) {
       console.log(err);
       res.send({success: false});
     }
     else {
-      connection.query('SELECT username FROM users WHERE userid in (SELECT userid FROM interested WHERE propertyid in (SELECT propertyid FROM upload WHERE userid = ?))',[req.body.userid],function(err,res){
+      req.body.userid = result[0].userid;
+      connection.query('SELECT propertyid FROM property,upload WHERE userid = ? AND verified = 1',[req.body.userid],function(err,result1){
         if(err) {
           console.log(err);
           res.send({success: false});
         }
         else {
-          res.send([{success: true,data:{result,res}}]);
+          connection.query('SELECT username FROM users WHERE userid in (SELECT userid FROM interested WHERE propertyid in (SELECT propertyid FROM upload WHERE userid = ?))',[req.body.userid],function(err,result2){
+            if(err) {
+              console.log(err);
+              res.send({success: false});
+            }
+            else {
+              res.send([{success: true,data:{result,res}}]);
+            }
+          });
         }
       });
     }
@@ -40,41 +51,52 @@ module.exports.addwishlist = function(req, res) {
     }
     else {
       console.log(result);
-      res.send({success:true});
-    }
-  });
-  /*
-  connection.query('DELETE FROM wishlist WHERE buyerid = ?',[req.body.userid],function(err,result){
-    if(err) {
-      console.log(err);
-      res.send({success: false});
-    }
-    else {
-      connection.query('INSERT INTO wishlist(buyerid,type,rlow,rhigh,location) values(?,?,?,?,?)',[req.body.userid,req.body.type,req.body.rlow,req.body.rhigh,req.body.location],function(err,result){
+      req.body.userid = result[0].userid;
+      connection.query('DELETE FROM wishlist WHERE buyerid = ?',[req.body.userid],function(err,result){
         if(err) {
           console.log(err);
           res.send({success: false});
         }
         else {
-          res.send({success:true,"message":"Your Wishlist is updated!"});
+          connection.query('INSERT INTO wishlist(buyerid,type,rlow,rhigh,location) values(?,?,?,?,?)',[req.body.userid,req.body.type,req.body.rlow,req.body.rhigh,req.body.location],function(err,result1){
+            if(err) {
+              console.log(err);
+              res.send({success: false});
+            }
+            else {
+              //console.log(result1);
+              res.send({success:true,message:"Your Wishlist is updated!"});
+            }
+          });
         }
       });
     }
   });
-  */
 }
 
 //GET all the relevant properties relevant to the user according to his wishlist
 module.exports.getproperty = function(req,res) {
-  connection.query('SELECT * FROM property where verified = 1 AND price >= (SELECT rlow FROM wishlist WHERE buyerid = ?) AND price<= (SELECT rhigh FROM wishlist WHERE buyerid = ? AND location = (SELECT location FROM wishlist WHERE buyerid = ?))',[req.body.userid,req.body.userid,req.body.userid],function(err,result){
+  var url_parts = url.parse(req.url, true);
+  req.body.username = url_parts.query.username;
+  connection.query('SELECT userid FROM users WHERE username = ?',[req.body.username],function(err,result){
     if(err) {
       console.log(err);
       res.send({success: false});
     }
     else {
-        res.send({success:true,data:result});
+      req.body.userid = result[0].userid;
+      connection.query('SELECT * FROM property where verified = 1 AND price >= (SELECT rlow FROM wishlist WHERE buyerid = ?) AND price<= (SELECT rhigh FROM wishlist WHERE buyerid = ? AND location = (SELECT location FROM wishlist WHERE buyerid = ?))',[req.body.userid,req.body.userid,req.body.userid],function(err,result1){
+        if(err) {
+          console.log(err);
+          res.send({success: false});
+        }
+        else {
+            res.send({success:true,data:result1});
+        }
+      });
     }
   });
+
 }
 
 //Record the act of the user if he is interested in some of the property
@@ -183,7 +205,7 @@ image.mv('client/upload/'+req.body.propertyid+'image.jpg', function(err) {
                                                           res.send({success: false});
                                                         }
                                                         console.log("Executed successfully");
-                                                        res.send({success:true});
+                                                        res.send({success:true,message:"Your property is uploaded"});
                                                       });
 
                                                     }
