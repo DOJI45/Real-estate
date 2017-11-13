@@ -4,12 +4,17 @@ app.controller("homeController",function($scope, $http, $resource, $route,$windo
 
   var notifications = $resource('/getnotifications?username='+$window.localStorage["user"]);
   notifications.query(function(result){
-   $scope.notifications = result[0].data;
-  })
+   $scope.notificationv = result[0].data.result1;
+   $scope.notificationi = result[0].data.result2;
+   console.log($scope.notificationv);
+   console.log($scope.notificationi);
+
+   })
 
   var property = $resource('/getproperty?username='+$window.localStorage["user"]);
   property.query(function(result){
     $scope.property = result[0].data;
+    //console.log($scope.property);
   })
 
 var data = {};
@@ -51,10 +56,12 @@ $scope.user = $window.localStorage["user"];
   }
 
 
-  $scope.interested = function(data){
+  $scope.interested = function(id){
+    data = {};
+    data.propertyid = id;
     data.username = $window.localStorage["user"];
-    alert(data.username);
-    alert(JSON.stringify(data));
+    //alert(data.username);
+    //alert(JSON.stringify(data));
     $http({
       url: '/interested',
       method: 'post',
@@ -85,5 +92,4 @@ $scope.user = $window.localStorage["user"];
           }
         }, function(err){});
       }
-
 });

@@ -1,0 +1,22 @@
+<div>
+
+  <h1 style="float: center;margin-left: 380px;"><font color="white"><strong>PROPERTIES THAT MATCHES YOUR REQUIREMENTS</strong></font></h1>
+
+  <a href="#/home" style="float:right"><button>HOME</button></a><br>
+  <hr>
+
+  <div class="well">
+    <div ng-repeat="x in property">
+      <h5><strong>PropertyID: {{x.propertyid}}</strong></h5>
+      <img ng-src="{{x.image}}"  width="400px" height="250px" alt="Image of the property">
+      <br>
+      <p>Type: {{x.type}}</p>
+      <p>Price: {{x.price}}</p>
+      <p>Location: {{x.location}}</p>
+      <p>Adress:{{x.adress}}</p>
+      <button ng-click="interested(x.propertyid)">I am interested in this property</button>
+      <hr>
+      <br>
+    </div>
+  </div>
+</div>

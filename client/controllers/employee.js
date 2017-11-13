@@ -3,7 +3,7 @@ var app = angular.module("realApp");
 app.controller("employeeController", function($scope, $http, $resource, $route,$window) {
 
 
-    var getverify = $resource('/getverify');
+    var getverify = $resource('/getverify?username='+$window.localStorage["user"]);
     getverify.query(function(result){
       $scope.getverify = result[0].data;
     })

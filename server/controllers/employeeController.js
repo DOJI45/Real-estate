@@ -28,6 +28,8 @@ module.exports.emplogin = function(req, res) {
 
 //SEND the data to the employee to verify the documents
 module.exports.getverify = function(req,res) {
+  var url_parts = url.parse(req.url, true);
+  req.body.username = url_parts.query.username;
   connection.query('SELECT employeeid from employee where username = ?',[req.body.username],function(err,result){
     if(err) {
       console.log(err);

@@ -32,6 +32,8 @@ module.exports.getnotifications = function(req,res) {
               res.send({success: false});
             }
             else {
+              console.log(result1);
+              console.log(result2);
               res.send([{success: true,data:{result1,result2}}]);
             }
           });
@@ -91,23 +93,32 @@ module.exports.getproperty = function(req,res) {
           res.send({success: false});
         }
         else {
-            res.send({success:true,data:result1});
+            res.send([{success:true,data:result1}]);
         }
       });
     }
   });
-
 }
 
 //Record the act of the user if he is interested in some of the property
 module.exports.interested = function(req, res) {
-  connection.query('INSERT INTO interested(userid,propertyid) values(?,?)',[req.body.userid,req.body.propertyid],function(err,result){
+  console.log(req.body);
+  connection.query('SELECT userid FROM users WHERE username = ?',[req.body.username],function(err,result){
     if(err) {
       console.log(err);
       res.send({success: false});
     }
     else {
-          res.send({success:true,"message":"Your response is recorded"});
+      req.body.userid = result[0].userid;
+      connection.query('INSERT INTO interested(userid,propertyid) values(?,?)',[req.body.userid,req.body.propertyid],function(err,result1){
+        if(err) {
+          console.log(err);
+          res.send({success: false});
+        }
+        else {
+              res.send({success:true,"message":"Your response is recorded"});
+        }
+      });
     }
   });
 }
@@ -151,7 +162,7 @@ image.mv('client/upload/'+req.body.propertyid+'image.jpg', function(err) {
                           else{
                             req.body.userid = result[0].userid;
 
-                          connection.query('INSERT INTO property(propertyid,price,type,location,adress,image) values(?,?,?,?,?,?)',[req.body.propertyid,req.body.price,req.body.type,req.body.location,req.body.adress,'/client/upload/'+req.body.propertyid+'image.jpg'],function(err,result){
+                          connection.query('INSERT INTO property(propertyid,price,type,location,adress,image) values(?,?,?,?,?,?)',[req.body.propertyid,req.body.price,req.body.type,req.body.location,req.body.adress,'/upload/'+req.body.propertyid+'image.jpg'],function(err,result){
                             if(err) {
                               console.log(err);
                               res.send({success: false, message: "FAILED TO UPDATE"});
@@ -159,7 +170,7 @@ image.mv('client/upload/'+req.body.propertyid+'image.jpg', function(err) {
                             else {
 
                               console.log(req.body);
-                              connection.query('INSERT INTO document(documentid,type,propertyid,image) values(?,?,?,?)',[req.body.khata,'khata',req.body.propertyid,'/client/upload/'+req.body.propertyid+'khata.pdf'],function(err,result){
+                              connection.query('INSERT INTO document(documentid,type,propertyid,image) values(?,?,?,?)',[req.body.khata,'khata',req.body.propertyid,'/upload/'+req.body.propertyid+'khata.pdf'],function(err,result){
                                 if(err) {
                                   console.log(err);
                                   res.send({success: false});
@@ -172,7 +183,7 @@ image.mv('client/upload/'+req.body.propertyid+'image.jpg', function(err) {
                                       res.send({success: false});
                                     }
                                     else {
-                                      connection.query('INSERT INTO document (documentid,type,propertyid,image) values(?,?,?,?)',[req.body.tax,'tax',req.body.propertyid,'/client/upload/'+req.body.propertyid+'tax.pdf'],function(err,result1){
+                                      connection.query('INSERT INTO document (documentid,type,propertyid,image) values(?,?,?,?)',[req.body.tax,'tax',req.body.propertyid,'/upload/'+req.body.propertyid+'tax.pdf'],function(err,result1){
                                         if(err) {
                                           console.log(err);
                                           res.send({success: false});
@@ -185,7 +196,7 @@ image.mv('client/upload/'+req.body.propertyid+'image.jpg', function(err) {
                                               res.send({success: false});
                                             }
                                             else {
-                                              connection.query('INSERT INTO document (documentid,type,propertyid,image) values(?,?,?,?)',[req.body.encum,'encumberation',req.body.propertyid,'/client/upload/'+req.body.propertyid+'encum.pdf'],function(err,result){
+                                              connection.query('INSERT INTO document (documentid,type,propertyid,image) values(?,?,?,?)',[req.body.encum,'encumberation',req.body.propertyid,'/upload/'+req.body.propertyid+'encum.pdf'],function(err,result){
                                                 if(err) {
                                                   console.log(err);
                                                   res.send({success: false});
