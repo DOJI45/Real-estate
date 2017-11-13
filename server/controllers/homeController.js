@@ -20,7 +20,7 @@ module.exports.getnotifications = function(req,res) {
     }
     else {
       req.body.userid = result[0].userid;
-      connection.query('SELECT propertyid FROM property,upload WHERE userid = ? AND verified = 1',[req.body.userid],function(err,result1){
+      connection.query('SELECT property.propertyid FROM property,upload WHERE upload.userid = ? AND property.propertyid = upload.propertyid AND  property.verified = 1',[req.body.userid],function(err,result1){
         if(err) {
           console.log(err);
           res.send({success: false});
@@ -32,7 +32,7 @@ module.exports.getnotifications = function(req,res) {
               res.send({success: false});
             }
             else {
-              res.send([{success: true,data:{result,res}}]);
+              res.send([{success: true,data:{result1,result2}}]);
             }
           });
         }
