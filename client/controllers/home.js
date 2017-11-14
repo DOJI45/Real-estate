@@ -2,6 +2,7 @@ var app = angular.module("realApp");
 
 app.controller("homeController",function($scope, $http, $resource, $route,$window) {
 
+
   var notifications = $resource('/getnotifications?username='+$window.localStorage["user"]);
   notifications.query(function(result){
    $scope.notificationv = result[0].data.result1;

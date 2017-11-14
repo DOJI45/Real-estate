@@ -12,24 +12,31 @@
 
       <br>
 
-    <label for="name">NAME</label>
-    <input type="text" id="username" ng-model="data1.name">
+    <label for="name">NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <input type="text" id="username" ng-model="data1.name" pattern="{4,}" required>
     <br/>
 
-    <label for="username">USERNAME</label>
-    <input type="text" id="username" ng-model="data1.username">
+    <label for="username">USERNAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <input type="text" id="username" ng-model="data1.username" pattern="{4,}" required>
     <br/>
+<div class="">
+  <label for="password">PASSWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+  <input type="password" ng-model="data1.password" ng-change="analyze(data1.password)" required>
 
-    <label for="password">PASSWORD</label>
-    <input type="password" id="password" ng-model="data1.password">
-    <br/>
+</div>
+<div ng-style="passwordStrength" ></div>
 
-    <label for="phone number">PHONE NUMBER</label>
-    <input type="text" id="username" ng-model="data1.phone">
-    <br/>
 
-    <label for="emailid">EMAIL</label>
-    <input type="email" id="username" ng-model="data1.email">
+<div >
+  <br><label for="phone number">PHONE NUMBER</label>
+  <input type="text" id="username" ng-model="data1.phone" pattern="[1-9]{1}[0-9]{9}" required>
+  <br/>
+</div>
+
+
+
+    <label for="emailid">EMAIL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <input type="email" id="username" ng-model="data1.email" required>
     <br/>
     <button type="submit" >Sign Up</button>
   </form>

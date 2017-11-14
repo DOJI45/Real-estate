@@ -2,10 +2,31 @@
 var app = angular.module("realApp");
 
 app.controller('loginController', function($scope,$resource, $location, $http,$window) {
-$scope.main = "Login";
-  $scope.username = "";
-  $scope.password = "";
-  $scope.type = "user";
+
+    $scope.main = "Login";
+    $scope.username = "";
+    $scope.password = "";
+    $scope.type = "user";
+
+  var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+  var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
+
+  $scope.passwordStrength = {
+                    "float": "left",
+                    "width": "200px",
+                    "height": "15px",
+                    "margin-left": "160px"
+                };
+  $scope.analyze = function(value) {
+                    if(strongRegex.test(value)) {
+                        $scope.passwordStrength["background-color"] = "green";
+                    } else if(mediumRegex.test(value)) {
+                        $scope.passwordStrength["background-color"] = "orange";
+                    } else {
+                          $scope.passwordStrength["background-color"] = "red";
+                    }
+                  }
     $scope.loginn = function() {
       if($scope.type=="user"){
         $http({
@@ -44,7 +65,6 @@ $scope.main = "Login";
         }, function(err){})
       }
     }
-
 
 
 
