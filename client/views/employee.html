@@ -10,7 +10,7 @@
     <div ng-repeat="x in getverify">
       <h5><strong>DocumentID: {{x.documentid}}</strong></h5>
       <h5><strong>PropertyID: {{x.propertyid}}</strong></h5>
-      <embed src="upload/76503khata.pdf" type="application/pdf"   height="300px" width="100%">
+      <embed src="{{x.image}}" type="application/pdf"   height="300px" width="100%">
       <br>
       <p>Type: {{x.type}}</p>
       <button ng-click="verify(x.documentid)">Verify document</button>
