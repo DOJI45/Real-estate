@@ -44,5 +44,72 @@ Every thing is digital now. The old banner ads are gone now.
 Hence the people want a online system that eliminates the need for broker and also provide a investing goal such
 that the hard earned money is not ruined.
 
-
 Hence our website is a perfect match for the current trends and have lot of scope.
+
+
+
+
+2.1	Overall Description
+
+We aim to connect the potential buyers and the sellers across the globe.
+Sellers upload property details with valid
+documents. We overcome the problem of fraud sale
+by having a verification process with the documents.
+Only verified documents which are according to wish list of the buyer are shown to the buyer.
+Buyer may choose the property he is interested in and contact the owner.
+Meanwhile once the buyer is interested on some property the seller of that property is sent a notification.
+
+Hence for such implementation we are using various platforms namely HTML5,CSS,Atom,AngularJS and a few more with support from hardware below are the mentioned software  as well as hardware requirement  and where are they used.
+
+2.2	Specific Requirements
+2.2.1	Software Requirement
+•	 Front-end : Html5,Css3,Bootstrap,Angularjs,Jquery.
+•	IDE used : Atom, Sublime.
+•	Tools : Postman, Chrome dev tools.
+•	Back-end : Nodejs.
+
+•	Packages : mysql,express-fileupload, multer.
+•	Web-server : Http server in Nodejs.
+•	Database used : Mysql.
+•	Web-Browser : Google-Chrome,Mozilla- Firefox,Safari.
+
+2.2.2	Hardware Requirement
+•	 Processor : 2 CPU Cores or higher(2x1.6GHz or more).
+•	 RAM : 2GB or more
+•	 Hard Disk : 10GB.
+
+
+2.3	Functionality
+FUNCTIONAL REQUIREMENTS:
+
+
+
+•	Creating valid user-names for registration by admin.
+•	Registration of the Users by using valid username and providing their details.
+- Updating of the wishlist.
+- Adding the properties for sale.
+- Verification of the properties by the employees.
+Namely khata certificate, tax receit and encumberation certificates has to be uploaded by the
+sellers and same will be verified by each of the expert employees.
+- View the relevant properties according to the wishlist.
+- Commit the interest in some of the properties.
+- Getting notifications about the verified property and people who are interested to buy the
+property of the seller.
+
+
+
+
+
+
+
+
+  NON-FUNCTIONAL REQUIREMENTS:
+
+•	User Friendly: A good user interface which needs no explanation and easy to use.
+•	Security:
+o	Prevention of unauthorized access(like users logging in as employee).
+o	Form validations and force the user to create a strong password.
+o	Limiting the number of ports to be accessed.
+
+•	Backup: Retrieve and recovery of data is possible in cases of damage,corrupt or loss of data
+•	Performance: Optimizing the Storage data and providing higher hardware resources to the server.
