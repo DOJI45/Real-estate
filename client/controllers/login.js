@@ -7,23 +7,46 @@ $scope.main = "Login";
   $scope.password = "";
   $scope.type = "user";
     $scope.loginn = function() {
-      $http({
-        url: '/login',
-        method: 'post',
-        data: {
-          "username": $scope.username,
-          "password": $scope.password
-        }
-      }).then(function(data) {
-        if(data.data.success) {
-          $location.path('/home');
-          $window.localStorage["user"] = $scope.username;
-        }
-        else {
-          alert(data.data.message);
-        }
-      }, function(err){})
+      if($scope.type=="user"){
+        $http({
+          url: '/login',
+          method: 'post',
+          data: {
+            "username": $scope.username,
+            "password": $scope.password
+          }
+        }).then(function(data) {
+          if(data.data.success) {
+            $location.path('/home');
+            $window.localStorage["user"] = $scope.username;
+          }
+          else {
+            alert(data.data.message);
+          }
+        }, function(err){})
+      }
+      else {
+        $http({
+          url: '/emplogin',
+          method: 'post',
+          data: {
+            "username": $scope.username,
+            "password": $scope.password
+          }
+        }).then(function(data) {
+          if(data.data.success) {
+            $location.path('/employee');
+            $window.localStorage["user"] = $scope.username;
+          }
+          else {
+            alert(data.data.message);
+          }
+        }, function(err){})
+      }
     }
+
+
+
 
   $scope.signup = function(data1) {
     data1.type="user";

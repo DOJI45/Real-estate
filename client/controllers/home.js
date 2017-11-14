@@ -68,10 +68,10 @@ $scope.user = $window.localStorage["user"];
       data:data
     }).then(function(data) {
       if(data.data.success) {
-        alert("Wishlist updated SUCCESSFULLY");
+        alert("Your Interest is Recorded SUCCESSFULLY");
       }
       else {
-        alert(data.data.message);
+        alert("Your Interest is Recorded SUCCESSFULLY");
       }
     }, function(err){});
   }

@@ -6,19 +6,20 @@ app.controller("employeeController", function($scope, $http, $resource, $route,$
     var getverify = $resource('/getverify?username='+$window.localStorage["user"]);
     getverify.query(function(result){
       $scope.getverify = result[0].data;
+      console.log($scope.getverify);
     })
 
-    $scope.verify = function(data){
+    $scope.verify = function(id){
+      data = {};
       data.username = $window.localStorage["user"];
-      alert(data.username);
-      alert(JSON.stringify(data));
+      data.documentid = id;
       $http({
         url: '/verify',
         method: 'post',
         data:data
       }).then(function(data) {
         if(data.data.success) {
-          console.log('document is verified changes made in the database');
+          alert("document is verified changes made in the database");
         }
         else {
           alert(JSON.stringify(data.data));

@@ -1,19 +1,24 @@
 <div>
-  <h1 style="float: center;margin-left: 380px;"><font color="blue"><strong>Notifications</strong></font></h1><hr>
+  <h1 style="float: center;margin-left: 380px;"><font color="white"><strong>Notifications</strong></font></h1>
+  <a href="#/home" style="float:right"><button>HOME</button></a><br>
+  <hr>
   <div class="well">
     <h3><strong>APPROVED PROPERTIES</strong></h3>
     <div ng-repeat="x in notificationv">
-      {{x.propertyid}}
+      <p>Property Id : <strong>{{x.propertyid}}</strong></p>
+      <p>Property Type : <strong>{{x.type}}</strong></p>
+      <p>Property Location : <strong>{{x.location}}</strong></p>
+      <p>Property Price : <strong>{{x.price}}</strong></p>
       <hr>
       <br>
     </div>
     <h3><strong>PEOPLE INTERESTED IN YOUR PROPERTY</strong></h3>
     <div ng-repeat="x in notificationi">
-      {{x.username}}
+      <p><strong>{{x.name}}</strong></p>
+      <p>Phone: {{x.phone}}</p>
+      <p>Email : {{x.email}}</p>
       <hr>
       <br>
     </div>
-
-
   </div>
 </div>

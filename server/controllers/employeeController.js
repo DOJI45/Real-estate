@@ -10,13 +10,13 @@ var connection = mysql.createConnection({
 //Employee login
 module.exports.emplogin = function(req, res) {
   console.log(req.body)
-  connection.query('SELECT * FROM login WHERE (username = ?)', [ req.body.username ], function (error, result, fields) {
+  connection.query('SELECT * FROM employee WHERE (username = ?)', [ req.body.username ], function (error, result, fields) {
     if(error) console.log(error);
     else if(!result.length) {
       res.send({success: false, message: "INCORRECT USERNAME"})
     }
     else {
-      if(result[0].password == req.body.password){
+      if(result[0].passsword == req.body.password){
         res.send({success: true, message: "correct", type: result[0].type})
       }
       else {
@@ -37,13 +37,14 @@ module.exports.getverify = function(req,res) {
     }
     else {
       req.body.employeeid = result[0].employeeid;
-      connection.query('SELECT * FROM document WHERE documentid in (SELECT verification.documentid WHERE verification.employeeid = ?)',[req.body.employeeid],function(err,result1){
+      connection.query('SELECT * FROM document WHERE documentid in (SELECT verification.documentid FROM verification WHERE verification.employeeid = ?)',[req.body.employeeid],function(err,result1){
         if(err) {
           console.log(err);
           res.send({success: false});
         }
         else {
-          res.send({success: true,data:result1});
+          console.log(result1);
+          res.send([{success: true,data:result1}]);
         }
       });
     }
@@ -74,7 +75,7 @@ module.exports.verify = function(req,res) {
               }
               else{
                 req.body.propertyid = result2[0].propertyid;
-                connection.query('SELECT COUNT(*) AS cnt FROM verification WHERE status = 1 AND propertyid = ?',[req.body.propertyid],function(err,result3){
+                connection.query('SELECT COUNT(*) AS cnt FROM verification WHERE status = 1 AND documentid IN (SELECT documentid FROM document WHERE propertyid = ?)',[req.body.propertyid],function(err,result3){
                   if(err) {
                     console.log(err);
                     res.send({success: false});

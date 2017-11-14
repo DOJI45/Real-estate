@@ -1,18 +1,19 @@
+
 <div>
 
-  <h1 style="float: center;margin-left: 380px;"><font color="white"><strong>DOCUMENTS FOR VERIFICATION</strong></font></h1>
+  <h1 style="float: center;margin-left: 380px;"><font color="white"><strong>DOCUMENTS FOR VERIFICATION</strong></font></h1><br>
+  <br>
+  <a href="#/login" style="float:right"><button>LOGOUT</button></a><br>
   <hr>
 
   <div class="well">
     <div ng-repeat="x in getverify">
+      <h5><strong>DocumentID: {{x.documentid}}</strong></h5>
       <h5><strong>PropertyID: {{x.propertyid}}</strong></h5>
-      <img ng-src="{{x.image}}"  width="400px" height="250px" alt="Image of the property">
+      <embed src="upload/76503khata.pdf" type="application/pdf"   height="300px" width="100%">
       <br>
       <p>Type: {{x.type}}</p>
-      <p>Price: {{x.price}}</p>
-      <p>Location: {{x.location}}</p>
-      <p>Adress:{{x.adress}}</p>
-      <button ng-click="interested(x.propertyid)">I am interested in this property</button>
+      <button ng-click="verify(x.documentid)">Verify document</button>
       <hr>
       <br>
     </div>

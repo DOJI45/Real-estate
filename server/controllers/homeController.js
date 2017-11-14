@@ -20,13 +20,13 @@ module.exports.getnotifications = function(req,res) {
     }
     else {
       req.body.userid = result[0].userid;
-      connection.query('SELECT property.propertyid FROM property,upload WHERE upload.userid = ? AND property.propertyid = upload.propertyid AND  property.verified = 1',[req.body.userid],function(err,result1){
+      connection.query('SELECT * FROM property,upload WHERE upload.userid = ? AND property.propertyid = upload.propertyid AND  property.verified = 1',[req.body.userid],function(err,result1){
         if(err) {
           console.log(err);
           res.send({success: false});
         }
         else {
-          connection.query('SELECT username FROM users WHERE userid in (SELECT userid FROM interested WHERE propertyid in (SELECT propertyid FROM upload WHERE userid = ?))',[req.body.userid],function(err,result2){
+          connection.query('SELECT *  FROM users WHERE userid in (SELECT userid FROM interested WHERE propertyid in (SELECT propertyid FROM upload WHERE userid = ?))',[req.body.userid],function(err,result2){
             if(err) {
               console.log(err);
               res.send({success: false});
