@@ -1,0 +1,48 @@
+Introduction:
+
+Flow of money is essence of economy. Purchasing and  selling the assets is one of the common thing
+humans are doing and always look for gold in this field.
+A real time website serve the need of the buyer and seller such that it could connect a potential buyer
+with a seller.
+
+Property management is the operation, control, and oversight of real estate as
+used in its most broad terms. Management indicates a need to be cared for,
+monitored and accountability given for its useful life and condition.
+This is much akin to the role of management in any business.
+
+
+Property management is also the management of personal property, equipment,
+tooling, and physical capital assets that are acquired and used to build,
+repair, and maintain end item deliverables. Property management involves the processes, systems, and manpower
+required to manage the life cycle of all acquired property as defined above
+including acquisition, control, accountability, responsibility, maintenance, utilization, and disposition.
+
+
+
+But the major problem with the websites is that there is no guarantee that the property uploaded by
+the seller posses true documents and it is not fraud.
+
+Our projects mainly focuses on this area and have a document verification phase such that only the
+verified documents are get the view of the buyers.
+
+
+Purpose:
+
+Along with all the general purposes of the real estate management systems, this project focuses on the
+security of the money, that is tries to make sure that buyers are investing on the property that is not
+fraud.
+
+
+Scope:
+
+In 21st century with the advancement of technology, people are googling for anything and everything.
+Real Estate Website has got more scope across India and worldwide.
+This is because of the changing trends
+It's a truth that people search for agents through online.
+Also people are bored of the brokers who are making money our of nowhere.
+Every thing is digital now. The old banner ads are gone now.
+Hence the people want a online system that eliminates the need for broker and also provide a investing goal such
+that the hard earned money is not ruined.
+
+
+Hence our website is a perfect match for the current trends and have lot of scope.
