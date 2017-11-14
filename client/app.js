@@ -35,6 +35,10 @@ app.config(function($routeProvider) {
     templateUrl: '/views/wishlist.html',
     controller: 'homeController'
   })
+  .when('/uploadproperty',{
+    templateUrl: '/views/upload.html',
+    controller: 'redirectController'
+  })
   .otherwise({
     redirectTo: '/login'
   })

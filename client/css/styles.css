@@ -8,6 +8,16 @@ body {
 	color: #666;
 }
 
+.mybutton{
+	width: 180px;
+	background: transparent;
+	border: 2px solid black;
+	font-weight: bold;
+	margin-left: 5px;
+	height: 30px;
+	color: black;
+}
+
 /* Typography */
 h1#title {
 	font-family: 'Roboto Slab', serif;

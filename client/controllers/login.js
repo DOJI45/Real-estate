@@ -82,3 +82,11 @@ app.controller('loginController', function($scope,$resource, $location, $http,$w
     }, function(err){})
   }
 });
+
+
+
+
+
+app.controller("redirectController",function($scope, $http, $resource, $route,$window,$location) {
+  $location.path('/upload');
+});

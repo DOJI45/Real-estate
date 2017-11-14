@@ -87,7 +87,7 @@ module.exports.getproperty = function(req,res) {
     }
     else {
       req.body.userid = result[0].userid;
-      connection.query('SELECT * FROM property where verified = 1 AND price >= (SELECT rlow FROM wishlist WHERE buyerid = ?) AND price<= (SELECT rhigh FROM wishlist WHERE buyerid = ? AND location = (SELECT location FROM wishlist WHERE buyerid = ?))',[req.body.userid,req.body.userid,req.body.userid],function(err,result1){
+      connection.query('SELECT * FROM property where verified = 1 AND price >= (SELECT rlow FROM wishlist WHERE buyerid = ?) AND price<= (SELECT rhigh FROM wishlist WHERE buyerid = ? AND location = (SELECT location FROM wishlist WHERE buyerid = ?) AND propertyid NOT IN (SELECT propertyid FROM upload WHERE userid = ?))',[req.body.userid,req.body.userid,req.body.userid,req.body.userid],function(err,result1){
         if(err) {
           console.log(err);
           res.send({success: false});
@@ -216,14 +216,12 @@ image.mv('client/upload/'+req.body.propertyid+'image.jpg', function(err) {
                                                           res.send({success: false});
                                                         }
                                                         console.log("Executed successfully");
-                                                        res.send({success:true,message:"Your property is uploaded"});
+                                                        res.send({success:true, message: "Uploaded successfully!!"});
                                                       });
-
                                                     }
                                                   });
                                                 }
                                               });
-
                                             }
                                           });
                                         }

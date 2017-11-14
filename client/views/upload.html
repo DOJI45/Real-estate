@@ -4,12 +4,13 @@
     <h1 id="title" class="hidden"><span id="logo">Daily <span>UI</span></span></h1>
   </div>
   <div class="login-box animated fadeInUp" style="width:50%">
+    <a href="#/home" style="float:right"><button>HOME</button></a><br>
     <div class="box-header">
       <h2 style="border-style: groove;">UPLOAD PROPERTY DETAILS</h2>
 
     </div>
 
-      <form ref='uploadForm' id='uploadForm' action='http://localhost:3000/uploadproperty' method='post' encType="multipart/form-data">
+      <form ng-submit = "redirect()" ref='uploadForm' id='uploadForm' action='http://localhost:3000/uploadproperty' method='post' encType="multipart/form-data">
 
       <br>
       <label for="type">TYPE</label>

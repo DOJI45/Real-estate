@@ -37,7 +37,7 @@ module.exports.getverify = function(req,res) {
     }
     else {
       req.body.employeeid = result[0].employeeid;
-      connection.query('SELECT * FROM document WHERE documentid in (SELECT verification.documentid FROM verification WHERE verification.employeeid = ?)',[req.body.employeeid],function(err,result1){
+      connection.query('SELECT * FROM document WHERE documentid in (SELECT verification.documentid FROM verification WHERE verification.employeeid = ? AND verification.status = 0)',[req.body.employeeid],function(err,result1){
         if(err) {
           console.log(err);
           res.send({success: false});

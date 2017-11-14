@@ -1,6 +1,6 @@
 var app = angular.module("realApp");
 
-app.controller("homeController",function($scope, $http, $resource, $route,$window) {
+app.controller("homeController",function($scope, $http, $resource, $location,$route,$window) {
 
 
   var notifications = $resource('/getnotifications?username='+$window.localStorage["user"]);
@@ -55,6 +55,11 @@ $scope.user = $window.localStorage["user"];
       }
     }, function(err){});
   }
+
+$scope.redirect = function(){
+  console.log('Manjunath redirected');
+  $location.path('/upload');
+}
 
 
   $scope.interested = function(id){
